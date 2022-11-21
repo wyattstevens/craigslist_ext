@@ -79,18 +79,96 @@ const generateSubStyle = () => {
     `;
 };
 
+const generatePostStyle = () => {
+    return `
+    
+    .body {
+        border: solid #ddd4d4;
+        border-radius: 5px;
+        background: #ddd4d4;
+        box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
+      }
+
+      section.body {
+        padding: 20px 20px 20px 20px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        height: 90%;
+        min-height: 600px;
+    }
+
+    footer {
+        background: #eee;
+        border-top: 1px solid #ccc;
+        bottom: 0;
+        left: 0;
+        line-height: 1.5em;
+        min-height: 1.1em;
+        padding: .3em 4em .3em 0;
+        position: inherit;
+        right: 0;
+        text-align: center;
+    }
+
+    .global-header.wide .userlinks .user-actions li:first-child {
+        width: 80px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        margin-right: 20px;
+        padding-right: 0px;
+    }
+
+    .global-header.wide .userlinks .user-actions li {
+        width: 80px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
+    .user-actions li a {
+        text-decoration: none;
+        color: blue;
+    }
+
+    .user-actions li a:hover {
+        text-decoration: underline;
+    }
+
+    .posting .postingtitle {
+        display: flex;
+        justify-content: center;
+        font-family: "Bitstream Vera Serif","Times New Roman",serif;
+        font-size: 1.4em;
+        font-weight: bold;
+        line-height: 1.4em;
+        margin: 20px 0px 20px 0px;
+        clear: left;
+    }
+
+    `;
+};
+
 var siteURL = window.location.hostname.split(".");
 var sitePath = window.location.pathname.split("/");
 //console.log(siteURL[0]);  //logs "stgeorge" or whatever area you are viewing
 //console.log(siteURL[1]);  //logs "craigslist"
 //console.log(siteURL[2]);  //logs "org"
 //console.log(siteURL);     //logs ["location", "craigslist", "org"]
-console.log(sitePath);    //logs pathname -> /search/act or /act/12345.html when in activities category or on a post.
+//console.log(sitePath);    //logs pathname -> /search/act or /act/12345.html when in activities category or on a post.
 
 //You are on craigslist
 if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
     
-    console.log("You are on craigslist")
+    console.log("An if statement here? if we know we are on the front page.")
 
     //Identifies when viewing a subcategory we want to style.
     if(sitePath[1] == "search" && categoryException(sitePath[2]) == false) {
@@ -102,8 +180,12 @@ if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
 
     }
 
-    //Identifies individual post.
+    //Identifies when viewing an individual post.
     if(sitePath[1] != "" && sitePath[1] != "search" && sitePath[1] != "about") {
         console.log("You are viewing an individual post.");
+
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = generatePostStyle();
+        document.head.appendChild(styleSheet);
     }
 }
