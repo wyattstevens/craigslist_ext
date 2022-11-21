@@ -1,4 +1,21 @@
 
+//Styling for these subcategories looks worse so dont include them.
+function categoryException(strName) {
+    
+    exceptions = ["hhh", "apa", "swp", "hsw", "off", "prk", "rea", "roo", "sha", "sub", "vac", "sss", "ata",
+                  "ppa", "ara", "sna", "pta", "ava", "baa", "bar", "haa", "bip", "bia", "bpa", "boo", "bka",
+                  "bfa", "cta", "ema", "moa", "cla", "cba", "syp", "sya", "ela", "gra", "zip", "fua", "gms",
+                  "foa", "hva", "hsa", "jwa", "maa", "mpa", "mca", "msa", "pha", "rva", "sga", "tia", "tla",
+                  "taa", "tra", "vga", "waa", "wta"];
+
+    for (let index = 0; index < exceptions.length; index++) {
+        if(exceptions[index] == strName) {
+            return true;
+        }
+    }
+    return false;
+}
+
 const generateSubStyle = () => {
     return `
     
@@ -27,7 +44,7 @@ const generateSubStyle = () => {
     }
 
     .cl-query-bar {
-        width: 50%;
+        
     }
 
     header.cl-wide .cl-menu-item.cl-goto-account {
@@ -68,29 +85,25 @@ var sitePath = window.location.pathname.split("/");
 //console.log(siteURL[1]);  //logs "craigslist"
 //console.log(siteURL[2]);  //logs "org"
 //console.log(siteURL);     //logs ["location", "craigslist", "org"]
-//console.log(sitePath);    //logs pathname -> /search/act or /act/12345.html when in activities category or on a post.
+console.log(sitePath);    //logs pathname -> /search/act or /act/12345.html when in activities category or on a post.
 
-switch (true) {    
+//You are on craigslist
+if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
+    
+    console.log("You are on craigslist")
 
-    case siteURL[1] == "craigslist" && siteURL[2] == "org":
-        
-        console.log("You are on craigslist")
+    //Identifies when viewing a subcategory we want to style.
+    if(sitePath[1] == "search" && categoryException(sitePath[2]) == false) {
+        console.log("You are in a subcategory");
 
-        //Identifies when viewing a subcategory.
-        if(sitePath[1] == "search") {
-            console.log("You are in a subcategory");
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = generateSubStyle();
+        document.head.appendChild(styleSheet);
 
-            var styleSheet = document.createElement("style");
-            styleSheet.innerText = generateSubStyle();
-            document.head.appendChild(styleSheet);
+    }
 
-        }
-
-        //Identifies individual post.
-        if(sitePath[1] != "" && sitePath[1] != "search" && sitePath[1] != "about") {
-            console.log("You are viewing an individual post.");
-        }
-
-        break;
-
+    //Identifies individual post.
+    if(sitePath[1] != "" && sitePath[1] != "search" && sitePath[1] != "about") {
+        console.log("You are viewing an individual post.");
+    }
 }
