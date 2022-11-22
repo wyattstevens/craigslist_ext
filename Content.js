@@ -16,6 +16,15 @@ function categoryException(strName) {
     return false;
 }
 
+function testFunc() {
+    var html = document.getElementsByClassName('.cl-search-toolbars .cl-search-tools-left .cl-search-view-mode, .cl-search-toolbars .cl-search-tools-right .cl-search-view-mode')[0].innerHTML;
+    var clone = document.createElement('span');
+    clone.innerHTML = html;
+
+    var searchBar = document.getElementsByClassName('cl-query-bar')[0];
+    searchBar.appendChild(clone);
+}
+
 const generateSubStyle = () => {
     return `
     
@@ -44,7 +53,6 @@ const generateSubStyle = () => {
     }
 
     .cl-query-bar {
-        
     }
 
     header.cl-wide .cl-menu-item.cl-goto-account {
@@ -74,6 +82,61 @@ const generateSubStyle = () => {
 
     header .cl-breadcrumb.bd-combo-box {
         display: none;
+    }
+
+    `;
+};
+
+const generateSubStyle2 = () => {
+    return `
+
+    #search-toolbars-1 .cl-search-paginator {
+        display: none;
+    }
+
+    #search-toolbars-1 {
+        display: none;
+    }
+
+    .cl-search-query {
+        display: flex;
+        justify-content: center;
+    }
+
+    .cl-query-bar {
+    }
+
+    header.cl-wide .cl-menu-item.cl-goto-account {
+        width: 80px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
+    header.cl-wide .cl-menu-item.cl-goto-post {
+        width: 80px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
+    header .bd-button.link-like {
+        background-color: #fff;
+        border-color: #eee;
+    }
+
+    header .cl-breadcrumb.bd-combo-box {
+        display: none;
+    }
+
+    .cl-hub-links {
+        margin-bottom: 20px;
     }
 
     `;
@@ -170,7 +233,9 @@ if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
     
     console.log("An if statement here? if we know we are on the front page.")
 
+    ////
     //Identifies when viewing a subcategory we want to style.
+    ////
     if(sitePath[1] == "search" && categoryException(sitePath[2]) == false) {
         console.log("You are in a subcategory");
 
@@ -178,9 +243,21 @@ if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
         styleSheet.innerText = generateSubStyle();
         document.head.appendChild(styleSheet);
 
+        window.onload = function () {
+
+            //testFunc()
+
+        }
+
+    } else if(sitePath[1] == "search" && categoryException(sitePath[2]) == true) {
+        var styleSheet = document.createElement("style");
+        styleSheet.innerText = generateSubStyle2();
+        document.head.appendChild(styleSheet);
     }
 
+    ////
     //Identifies when viewing an individual post.
+    ////
     if(sitePath[1] != "" && sitePath[1] != "search" && sitePath[1] != "about") {
         console.log("You are viewing an individual post.");
 
