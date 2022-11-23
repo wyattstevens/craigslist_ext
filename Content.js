@@ -325,7 +325,7 @@ const generateSubStyle2 = () => {
     }
 
     #search-toolbars-1 {
-        display: none;
+        
     }
 
     .cl-search-query {
