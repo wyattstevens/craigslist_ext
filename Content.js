@@ -629,18 +629,17 @@ var sitePath = window.location.pathname.split("/");
 //console.log(siteURL[1]);  //logs "craigslist"
 //console.log(siteURL[2]);  //logs "org"
 //console.log(siteURL);     //logs ["location", "craigslist", "org"]
-console.log(siteURL);
-console.log(sitePath);    //logs pathname -> /search/act or /act/12345.html when in activities category or on a post.
+//console.log(siteURL);
+//console.log(sitePath);    //logs pathname -> /search/act or /act/12345.html when in activities category or on a post.
 
 //You are on craigslist
 if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
-    
-    console.log("An if statement here? if we know we are on the front page.")
 
     ////
     //Identifies when viewing the homepage.
     ////
     if(sitePath[0] == "" && sitePath[1] == "" && siteURL[0] != "forums") {
+        //console.log("You are on the homepage");
 
         var styleSheet = document.createElement("style");
         styleSheet.innerText = generateHomePageStyle();
@@ -652,7 +651,7 @@ if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
     //Identifies when viewing a subcategory we want to style.
     ////
     if(sitePath[1] == "search" && categoryException(sitePath[2]) == false) {
-        console.log("You are in a subcategory");
+        //console.log("You are in a subcategory");
 
         var styleSheet = document.createElement("style");
         styleSheet.innerText = generateSubStyle();
@@ -668,7 +667,7 @@ if(siteURL[1] == "craigslist" && siteURL[2] == "org") {
     //Identifies when viewing an individual post.
     ////
     if(sitePath[1] != "" && sitePath[1] != "search" && sitePath[1] != "about") {
-        console.log("You are viewing an individual post.");
+        //console.log("You are viewing an individual post.");
 
         var styleSheet = document.createElement("style");
         styleSheet.innerText = generatePostStyle();
