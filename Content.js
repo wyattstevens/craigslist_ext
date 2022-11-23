@@ -213,7 +213,9 @@ const resume_link = document.createElement("a");
 resume_link.setAttribute("href", "/search/rrr");
 resume_link.innerText = "resumes";
 resume_li.appendChild(resume_link)
-document.getElementById("jjj0").insertBefore(resume_li, document.getElementById("jjj0").children[19]);
+const jjj0 = document.getElementById("jjj0");
+const jjj0x = jjj0.children[18];
+jjj0x.insertAdjacentElement("afterend", resume_li);
 document.getElementById("rrr").remove();
 
 
@@ -303,7 +305,7 @@ buttonlist.appendChild(langb);
 //new login/sign up button
 var loginbutton = document.createElement("button");
 loginbutton.setAttribute("id", "loginbutton")
-loginbutton.innerHTML = "Login/Sign Up"
+loginbutton.innerHTML = "Login/Account"
 loginbutton.onclick = function () {
     window.location = "https://accounts.craigslist.org/login/home";
 }
@@ -335,22 +337,34 @@ mmm.setAttribute("class", "col");
 mmm.setAttribute("id", "mmm");
 const mban = document.createElement("h3");
 mban.setAttribute("class", "ban");
-mban.innerHTML = "most popular"
+mban.innerHTML = "popular"
 const mcats = document.createElement("div");
 mcats.setAttribute("class", "cats");
 const mmm0 = document.createElement("ul");
 mmm0.setAttribute("id", "mmm0");
 
 
-document.getElementById("center").appendChild(mostpopular);
-mostpopular.appendChild(mmm);
+document.getElementsByClassName("housing")[0].insertBefore(mmm, document.getElementsByClassName("housing")[0].children[0]);
+//mostpopular.appendChild(mmm);
 mmm.appendChild(mban);
 mmm.appendChild(mcats);
 mcats.appendChild(mmm0);
 
-const node = document.getElementById("sss1").children[1];
-const clone = node.cloneNode(true);
-mmm0.appendChild(clone);
 const node1 = document.getElementById("hhh0").children[0];
 const clone1 = node1.cloneNode(true);
 mmm0.appendChild(clone1);
+const node2 = document.getElementById("sss0").children[15];
+const clone2 = node2.cloneNode(true);
+mmm0.appendChild(clone2);
+const node5 = document.getElementById("sss0").children[21];
+const clone5 = node5.cloneNode(true);
+mmm0.appendChild(clone5);
+const node = document.getElementById("sss1").children[1];
+const clone = node.cloneNode(true);
+mmm0.appendChild(clone);
+const node4 = document.getElementById("ccc1").children[0];
+const clone4 = node4.cloneNode(true);
+mmm0.appendChild(clone4);
+const node3 = document.getElementById("sss1").children[19];
+const clone3 = node3.cloneNode(true);
+mmm0.appendChild(clone3);
